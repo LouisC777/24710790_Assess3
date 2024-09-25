@@ -204,7 +204,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fish death_0: 1149218963903089574
+      Fish death_1: 133265565014900202
+      Fish death_2: 1469818792234405010
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

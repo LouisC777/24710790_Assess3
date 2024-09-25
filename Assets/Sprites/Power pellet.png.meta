@@ -228,7 +228,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Power pellet_0: 7457170998892997437
+      Power pellet_1: 2767381372359895501
+      Power pellet_2: 7710701301794837217
+      Power pellet_3: 445814792858699297
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

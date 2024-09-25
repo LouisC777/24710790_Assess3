@@ -252,7 +252,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fish Down_0: -4665335253913302256
+      Fish Down_1: 8918971236794772410
+      Fish Down_2: -6866355947936397766
+      Fish Down_3: -4902257526549393831
+      Fish Down_4: 4743175123111394764
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -180,7 +180,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Jellyfish 1 (Down)_0: -8872300694137995091
+      Jellyfish 1 (Down)_1: 7738230368446495373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
