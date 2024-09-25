@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 20e135ac09990454aadaad2b56aa2e7b
+guid: df8297dfd61fdfd47b5360b8c925e383
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4739605019062551186
-    second: Jellyfish (Death)_0
+      213: -2510476293373519475
+    second: New Piskel_0
+  - first:
+      213: 627625725489826318
+    second: New Piskel_1
+  - first:
+      213: 6338068570567419226
+    second: New Piskel_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +132,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jellyfish (Death)_0
+      name: New Piskel_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 291
+        width: 64
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d899e6cbc1ff82dd0800000000000000
+      internalID: -2510476293373519475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 167
+        width: 64
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0ac7b3a546c5b800800000000000000
+      internalID: 627625725489826318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: New Piskel_2
       rect:
         serializedVersion: 2
         x: 30
@@ -140,8 +188,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6d3e1fb85a893eb0800000000000000
-      internalID: -4739605019062551186
+      spriteID: a552dbec8c755f750800000000000000
+      internalID: 6338068570567419226
       vertices: []
       indices: 
       edges: []
@@ -156,7 +204,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      New Piskel_0: -2510476293373519475
+      New Piskel_1: 627625725489826318
+      New Piskel_2: 6338068570567419226
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
