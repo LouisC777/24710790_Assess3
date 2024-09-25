@@ -140,7 +140,7 @@ TextureImporter:
         width: 112
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,7 +161,7 @@ TextureImporter:
         width: 112
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -179,10 +179,10 @@ TextureImporter:
         serializedVersion: 2
         x: 7
         y: 13
-        width: 184
+        width: 112
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,14 +197,17 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 646ce843c9e50ef49abceb010c602a06
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fish death (left)_0: -7700568439016328055
+      Fish death (left)_1: 8553323117642912289
+      Fish death (left)_2: 1399302467319590529
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
