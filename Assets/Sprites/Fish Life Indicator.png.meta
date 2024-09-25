@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Fish Life Indicator_0: -1818382640003660323
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

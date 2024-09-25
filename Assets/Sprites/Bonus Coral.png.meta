@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bonus Coral_0: -9048304254427406920
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

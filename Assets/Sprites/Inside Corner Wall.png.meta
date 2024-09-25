@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 339aeed447470c545a120281143c461f
+guid: e621aaec283e47f42968e2813432b4ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4778443300689952843
-    second: Jellyfish 1 (Right)_0
-  - first:
-      213: 2013487232316389706
-    second: Jellyfish 1 (Right)_1
+      213: -8123568184658311696
+    second: Inside Corner Wall_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Jellyfish 1 (Right)_0
+      name: Inside Corner Wall_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 136
-        width: 93
-        height: 100
+        x: 57
+        y: 0
+        width: 67
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,29 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5bfb703a22f8fadb0800000000000000
-      internalID: -4778443300689952843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Jellyfish 1 (Right)_1
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 12
-        width: 93
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a49b00a48f751fb10800000000000000
-      internalID: 2013487232316389706
+      spriteID: 0f5c6ccc6c9434f80800000000000000
+      internalID: -8123568184658311696
       vertices: []
       indices: 
       edges: []
@@ -180,9 +156,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Jellyfish 1 (Right)_0: -4778443300689952843
-      Jellyfish 1 (Right)_1: 2013487232316389706
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
