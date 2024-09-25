@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: d2135dba6f49ac84fbc0d07f1ced226a
+guid: a9184460557af8d469b6bd66138c0033
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7700568439016328055
-    second: Fish death (left)_0
+      213: -4665335253913302256
+    second: Fish Down_0
   - first:
-      213: 8553323117642912289
-    second: Fish death (left)_1
+      213: 8918971236794772410
+    second: Fish Down_1
   - first:
-      213: 1399302467319590529
-    second: Fish death (left)_2
+      213: -6866355947936397766
+    second: Fish Down_2
+  - first:
+      213: -4902257526549393831
+    second: Fish Down_3
+  - first:
+      213: 4743175123111394764
+    second: Fish Down_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -132,64 +138,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fish death (left)_0
+      name: Fish Down_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 137
-        width: 112
-        height: 100
+        x: 13
+        y: 503
+        width: 100
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 984f8d7ddc5122590800000000000000
-      internalID: -7700568439016328055
+      spriteID: 01b0468fd46614fb0800000000000000
+      internalID: -4665335253913302256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fish death (left)_1
+      name: Fish Down_1
       rect:
         serializedVersion: 2
-        x: 131
-        y: 137
-        width: 112
-        height: 100
+        x: 13
+        y: 379
+        width: 100
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1221e3cde0283b670800000000000000
-      internalID: 8553323117642912289
+      spriteID: abb241bc51d86cb70800000000000000
+      internalID: 8918971236794772410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fish death (left)_2
+      name: Fish Down_2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 13
-        width: 112
-        height: 100
+        x: 13
+        y: 255
+        width: 100
+        height: 112
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18e69e12e225b6310800000000000000
-      internalID: 1399302467319590529
+      spriteID: a364cd515adc5b0a0800000000000000
+      internalID: -6866355947936397766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Down_3
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 131
+        width: 100
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ec98cb0cea7fbb0800000000000000
+      internalID: -4902257526549393831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fish Down_4
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 7
+        width: 100
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccd3680e4a423d140800000000000000
+      internalID: 4743175123111394764
       vertices: []
       indices: 
       edges: []
@@ -197,17 +245,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 646ce843c9e50ef49abceb010c602a06
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Fish death (left)_0: -7700568439016328055
-      Fish death (left)_1: 8553323117642912289
-      Fish death (left)_2: 1399302467319590529
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
