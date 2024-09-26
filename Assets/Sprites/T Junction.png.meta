@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e621aaec283e47f42968e2813432b4ee
+guid: fa417ec4484377347b130439de99f2e4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8123568184658311696
-    second: Inside Corner Wall_0
+      213: -4747662760952921892
+    second: T Junction_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Inside Corner Wall_0
+      name: T Junction_0
       rect:
         serializedVersion: 2
-        x: 57
+        x: 0
         y: 0
-        width: 67
-        height: 70
+        width: 124
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0f5c6ccc6c9434f80800000000000000
-      internalID: -8123568184658311696
+      spriteID: cd00d048fd9ec1eb0800000000000000
+      internalID: -4747662760952921892
       vertices: []
       indices: 
       edges: []
@@ -156,8 +156,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Inside Corner Wall_0: -8123568184658311696
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

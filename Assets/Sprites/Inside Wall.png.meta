@@ -129,9 +129,9 @@ TextureImporter:
       name: Inside Wall_0
       rect:
         serializedVersion: 2
-        x: 57
+        x: 53
         y: 0
-        width: 10
+        width: 18
         height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,8 +156,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Inside Wall_0: -79038868277934948
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
