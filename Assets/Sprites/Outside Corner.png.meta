@@ -129,12 +129,12 @@ TextureImporter:
       name: Outside Corner_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 41
-        width: 83
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 124
+        height: 124
+      alignment: 9
+      pivot: {x: 0.49961936, y: 0.4998597}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 17a8a74be2eb5e64ebc58d746e09edf5
     internalID: 0
     vertices: []
     indices: 
