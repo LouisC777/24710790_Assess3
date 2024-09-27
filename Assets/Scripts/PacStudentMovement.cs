@@ -3,35 +3,30 @@ using UnityEngine;
 public class PacStudentMovement : MonoBehaviour
 {
     public Transform[] waypoints;         
-    public float speed = 5f;             
+    public float speed = 5f;              
     public AudioClip moveSound;          
-    private AudioSource audioSource;    
-    public Sprite upSprite;              
-    public Sprite downSprite;            
-    public Sprite leftSprite;           
-    public Sprite rightSprite;           
-
-    private SpriteRenderer spriteRenderer; // Reference to the SpriteRenderer
-    private int currentWaypointIndex = 0; // Index of the current waypoint
+    private AudioSource audioSource;      
+    private Animator animator;             
+    private int currentWaypointIndex = 0; 
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
-        audioSource = GetComponent<AudioSource>();     
+        animator = GetComponent<Animator>(); 
+        audioSource = GetComponent<AudioSource>();      
         audioSource.loop = true;  
-        audioSource.clip = moveSound; 
+        audioSource.clip = moveSound;  
     }
 
     void Update()
     {
-      
+        
         if (waypoints.Length > 0)
         {
             MoveTowardsWaypoint();
         }
         else
         {
-        
+            
             audioSource.Stop();
         }
     }
@@ -41,13 +36,13 @@ public class PacStudentMovement : MonoBehaviour
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         Vector3 direction = (targetWaypoint.position - transform.position).normalized;
 
-      
+        
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
-       
-        UpdateSprite(direction);
+        
+        UpdateAnimation(direction);
 
-       
+        
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
             currentWaypointIndex++; 
@@ -73,29 +68,29 @@ public class PacStudentMovement : MonoBehaviour
         }
     }
 
-    void UpdateSprite(Vector3 direction)
+    void UpdateAnimation(Vector3 direction)
     {
         
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) 
         {
             if (direction.x < 0) 
             {
-                spriteRenderer.sprite = leftSprite;
+                animator.SetTrigger("MoveLeft");
             }
             else if (direction.x > 0) 
             {
-                spriteRenderer.sprite = rightSprite;
+                animator.SetTrigger("MoveRight");
             }
         }
         else 
         {
             if (direction.y > 0) 
             {
-                spriteRenderer.sprite = upSprite;
+                animator.SetTrigger("MoveUp");
             }
-            else if (direction.y < 0)
+            else if (direction.y < 0) 
             {
-                spriteRenderer.sprite = downSprite;
+                animator.SetTrigger("MoveDown");
             }
         }
     }
