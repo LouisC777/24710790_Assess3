@@ -2,93 +2,50 @@ using UnityEngine;
 
 public class PacStudentMovement : MonoBehaviour
 {
-    public Transform[] waypoints;         
-    public float speed = 5f;              
-    public AudioClip moveSound;          
-    private AudioSource audioSource;      
-    private Animator animator;             
-    private int currentWaypointIndex = 0; 
+    // public Transform[] waypoints;         // Removed: No longer using waypoints
+    public float speed = 5f;              // Retained: May use for manual movement
+    public AudioClip moveSound;          // Retained: For movement sound effects
+    private AudioSource audioSource;      // Retained: To manage audio playback
+    private Animator animator;             // Retained: For character animations
+    // private int currentWaypointIndex = 0; // Removed: No longer tracking waypoints
 
     void Start()
     {
-        animator = GetComponent<Animator>(); 
-        audioSource = GetComponent<AudioSource>();      
-        audioSource.loop = true;  
-        audioSource.clip = moveSound;  
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
+        audioSource.clip = moveSound;
     }
 
     void Update()
     {
-        
-        if (waypoints.Length > 0)
-        {
-            MoveTowardsWaypoint();
-        }
-        else
-        {
-            
-            audioSource.Stop();
-        }
+        // Removed: Waypoint movement logic
+        // You can add manual movement controls here if needed
     }
 
-    void MoveTowardsWaypoint()
-    {
-        Transform targetWaypoint = waypoints[currentWaypointIndex];
-        Vector3 direction = (targetWaypoint.position - transform.position).normalized;
-
-        
-        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
-
-        
-        UpdateAnimation(direction);
-
-        
-        if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
-        {
-            currentWaypointIndex++; 
-
-            
-            if (currentWaypointIndex >= waypoints.Length)
-            {
-                currentWaypointIndex = 0; 
-            }
-        }
-
-        
-        if (Vector3.Distance(transform.position, targetWaypoint.position) > 0.1f)
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play(); 
-            }
-        }
-        else
-        {
-            audioSource.Stop(); 
-        }
-    }
+    // Removed: MoveTowardsWaypoint method
 
     void UpdateAnimation(Vector3 direction)
     {
-        
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) 
+        // Retained: To handle animations based on movement direction
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
-            if (direction.x < 0) 
+            if (direction.x < 0)
             {
                 animator.SetTrigger("MoveLeft");
             }
-            else if (direction.x > 0) 
+            else if (direction.x > 0)
             {
                 animator.SetTrigger("MoveRight");
             }
         }
-        else 
+        else
         {
-            if (direction.y > 0) 
+            if (direction.y > 0)
             {
                 animator.SetTrigger("MoveUp");
             }
-            else if (direction.y < 0) 
+            else if (direction.y < 0)
             {
                 animator.SetTrigger("MoveDown");
             }
