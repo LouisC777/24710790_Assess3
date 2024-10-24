@@ -5222,7 +5222,6 @@ GameObject:
   - component: {fileID: 969869982}
   - component: {fileID: 969869984}
   - component: {fileID: 969869983}
-  - component: {fileID: 969869985}
   - component: {fileID: 969869986}
   m_Layer: 0
   m_Name: PacStudent Fish
@@ -5322,20 +5321,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &969869985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969869981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 513bdc6dc87a3b342a2a2aa914e70bc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  moveSound: {fileID: 8300000, guid: bcc4c05a434867b4ab60c58960162785, type: 3}
 --- !u!82 &969869986
 AudioSource:
   m_ObjectHideFlags: 0
