@@ -3953,6 +3953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115660546}
   - component: {fileID: 115660545}
+  - component: {fileID: 115660547}
   m_Layer: 0
   m_Name: Level Layout
   m_TagString: Untagged
@@ -3991,6 +3992,22 @@ Transform:
   - {fileID: 1689619109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115660547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115660544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb8a9a4371e8ca4085afef779f43280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topLeftTilemap: {fileID: 84576145}
+  topRightTilemap: {fileID: 1178595751}
+  bottomLeftTilemap: {fileID: 88170967}
+  bottomRightTilemap: {fileID: 1689619111}
 --- !u!1 &472100441
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,6 +5240,7 @@ GameObject:
   - component: {fileID: 969869984}
   - component: {fileID: 969869983}
   - component: {fileID: 969869986}
+  - component: {fileID: 969869987}
   m_Layer: 0
   m_Name: PacStudent Fish
   m_TagString: Untagged
@@ -5418,6 +5436,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &969869987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969869981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3f8222684f14e458098186aabadae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!1 &1054116624
 GameObject:
   m_ObjectHideFlags: 0
