@@ -8,4 +8,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("PacStudent"); // Load the PacStudent scene
     }
+
+    // This method will be called when the "Exit" button is pressed
+    public void LoadStartScreen()
+    {
+        SceneManager.LoadScene("StartScene"); // Load the Start Screen scene
+    }
 }
