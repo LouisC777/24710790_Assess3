@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PacStudentController : MonoBehaviour
 {
@@ -6,6 +7,15 @@ public class PacStudentController : MonoBehaviour
     private KeyCode lastInput, currentInput;
     private Vector3 targetPosition, currentPosition;
     private bool isMoving = false;
+
+    // Animation and audio components
+    public Animator animator;
+    public AudioSource audioSource;
+    public AudioClip pelletClip;
+    public AudioClip moveClip;
+
+    // Tilemap references
+    public Tilemap wallTilemap;
 
     void Start()
     {
@@ -16,7 +26,7 @@ public class PacStudentController : MonoBehaviour
     void Update()
     {
         GatherInput();
-        
+
         if (!isMoving)
         {
             TryMove(lastInput);
@@ -60,13 +70,27 @@ public class PacStudentController : MonoBehaviour
 
     bool IsWalkable(Vector3 position)
     {
-        // Check with LevelGenerator.cs or other logic if this position is walkable
-        return true; // Example, replace with actual check
+        // Check for wall collisions
+        TileBase tile = wallTilemap.GetTile(wallTilemap.WorldToCell(position));
+        return tile == null; // If there's no tile, it's walkable
     }
 
     System.Collections.IEnumerator MoveToPosition(Vector3 target)
     {
         isMoving = true;
+        animator.SetBool("isMoving", true); // Start movement animation
+
+        // Check if PacStudent is about to eat a pellet
+        if (IsPellet(target))
+        {
+            audioSource.clip = pelletClip;
+        }
+        else
+        {
+            audioSource.clip = moveClip;
+        }
+        audioSource.Play();
+
         float elapsedTime = 0;
         float journeyLength = Vector3.Distance(currentPosition, targetPosition);
 
@@ -80,5 +104,15 @@ public class PacStudentController : MonoBehaviour
         transform.position = target;
         currentPosition = target;
         isMoving = false;
+
+        // Stop animation and audio when movement finishes
+        animator.SetBool("isMoving", false);
+        audioSource.Stop();
+    }
+
+    bool IsPellet(Vector3 position)
+    {
+        // Implement logic to determine if the target position has a pellet
+        return false; // Example placeholder
     }
 }
