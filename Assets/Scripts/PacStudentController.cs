@@ -40,10 +40,26 @@ public class PacStudentController : MonoBehaviour
 
     void GatherInput()
     {
-        if (Input.GetKeyDown(KeyCode.W)) lastInput = KeyCode.W;
-        else if (Input.GetKeyDown(KeyCode.A)) lastInput = KeyCode.A;
-        else if (Input.GetKeyDown(KeyCode.S)) lastInput = KeyCode.S;
-        else if (Input.GetKeyDown(KeyCode.D)) lastInput = KeyCode.D;
+        if (Input.GetKeyDown(KeyCode.W)) 
+        {
+            lastInput = KeyCode.W;
+            animator.SetTrigger("MoveUp"); // Trigger up movement animation
+        }
+        else if (Input.GetKeyDown(KeyCode.A)) 
+        {
+            lastInput = KeyCode.A;
+            animator.SetTrigger("MoveLeft"); // Trigger left movement animation
+        }
+        else if (Input.GetKeyDown(KeyCode.S)) 
+        {
+            lastInput = KeyCode.S;
+            animator.SetTrigger("MoveDown"); // Trigger down movement animation
+        }
+        else if (Input.GetKeyDown(KeyCode.D)) 
+        {
+            lastInput = KeyCode.D;
+            animator.SetTrigger("MoveRight"); // Trigger right movement animation
+        }
     }
 
     void TryMove(KeyCode direction)
@@ -70,7 +86,6 @@ public class PacStudentController : MonoBehaviour
 
     bool IsWalkable(Vector3 position)
     {
-        // Check for wall collisions
         TileBase tile = wallTilemap.GetTile(wallTilemap.WorldToCell(position));
         return tile == null; // If there's no tile, it's walkable
     }
