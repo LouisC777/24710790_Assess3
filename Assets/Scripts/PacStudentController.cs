@@ -17,10 +17,19 @@ public class PacStudentController : MonoBehaviour
     // Tilemap references
     public Tilemap wallTilemap;
 
+    // Dust particle effect
+    public GameObject dustParticlePrefab; // Assign the dust particle prefab here
+    private GameObject dustParticleInstance;
+
     void Start()
     {
         currentPosition = transform.position;
         targetPosition = currentPosition;
+
+        // Instantiate the dust particles and parent it to PacStudent
+        dustParticleInstance = Instantiate(dustParticlePrefab, transform.position, Quaternion.identity);
+        dustParticleInstance.transform.SetParent(transform);
+        dustParticleInstance.SetActive(false); // Start inactive
     }
 
     void Update()
@@ -29,40 +38,20 @@ public class PacStudentController : MonoBehaviour
 
         if (!isMoving)
         {
-            TryMove(lastInput);
-
-            if (!isMoving && currentInput != KeyCode.None)
-            {
-                TryMove(currentInput);
-            }
+            if (TryMove(lastInput)) return; // Try to move with last input
+            if (TryMove(currentInput)) return; // Try to move with current input
         }
     }
 
     void GatherInput()
     {
-        if (Input.GetKeyDown(KeyCode.W)) 
-        {
-            lastInput = KeyCode.W;
-            animator.SetTrigger("MoveUp"); // Trigger up movement animation
-        }
-        else if (Input.GetKeyDown(KeyCode.A)) 
-        {
-            lastInput = KeyCode.A;
-            animator.SetTrigger("MoveLeft"); // Trigger left movement animation
-        }
-        else if (Input.GetKeyDown(KeyCode.S)) 
-        {
-            lastInput = KeyCode.S;
-            animator.SetTrigger("MoveDown"); // Trigger down movement animation
-        }
-        else if (Input.GetKeyDown(KeyCode.D)) 
-        {
-            lastInput = KeyCode.D;
-            animator.SetTrigger("MoveRight"); // Trigger right movement animation
-        }
+        if (Input.GetKeyDown(KeyCode.W)) lastInput = KeyCode.W;
+        else if (Input.GetKeyDown(KeyCode.A)) lastInput = KeyCode.A;
+        else if (Input.GetKeyDown(KeyCode.S)) lastInput = KeyCode.S;
+        else if (Input.GetKeyDown(KeyCode.D)) lastInput = KeyCode.D;
     }
 
-    void TryMove(KeyCode direction)
+    bool TryMove(KeyCode direction)
     {
         Vector3 moveDirection = GetDirectionFromKey(direction);
         Vector3 newPosition = currentPosition + moveDirection;
@@ -71,8 +60,11 @@ public class PacStudentController : MonoBehaviour
         {
             currentInput = direction;
             targetPosition = newPosition;
+            SetMovementAnimation(direction); // Set animation only if moving
             StartCoroutine(MoveToPosition(targetPosition));
+            return true;
         }
+        return false;
     }
 
     Vector3 GetDirectionFromKey(KeyCode key)
@@ -90,20 +82,27 @@ public class PacStudentController : MonoBehaviour
         return tile == null; // If there's no tile, it's walkable
     }
 
+    void SetMovementAnimation(KeyCode direction)
+    {
+        animator.SetBool("isMoving", true);
+        animator.ResetTrigger("moveUp");
+        animator.ResetTrigger("moveDown");
+        animator.ResetTrigger("moveLeft");
+        animator.ResetTrigger("moveRight");
+
+        // Trigger the correct animation based on the direction
+        if (direction == KeyCode.W) animator.SetTrigger("moveUp");
+        else if (direction == KeyCode.A) animator.SetTrigger("moveLeft");
+        else if (direction == KeyCode.S) animator.SetTrigger("moveDown");
+        else if (direction == KeyCode.D) animator.SetTrigger("moveRight");
+    }
+
     System.Collections.IEnumerator MoveToPosition(Vector3 target)
     {
         isMoving = true;
-        animator.SetBool("isMoving", true); // Start movement animation
+        animator.SetBool("isMoving", true);
+        dustParticleInstance.SetActive(true); // Activate dust particles
 
-        // Check if PacStudent is about to eat a pellet
-        if (IsPellet(target))
-        {
-            audioSource.clip = pelletClip;
-        }
-        else
-        {
-            audioSource.clip = moveClip;
-        }
         audioSource.Play();
 
         float elapsedTime = 0;
@@ -120,9 +119,10 @@ public class PacStudentController : MonoBehaviour
         currentPosition = target;
         isMoving = false;
 
-        // Stop animation and audio when movement finishes
+        // Stop animation, audio, and dust effect when movement finishes
         animator.SetBool("isMoving", false);
         audioSource.Stop();
+        dustParticleInstance.SetActive(false); // Deactivate dust particles
     }
 
     bool IsPellet(Vector3 position)
