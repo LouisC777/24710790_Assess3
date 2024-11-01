@@ -18,8 +18,8 @@ public class PacStudentController : MonoBehaviour
     public Tilemap wallTilemap;
 
     // Dust particle effect
-    public GameObject dustParticlePrefab; // Assign the dust particle prefab here
-    private GameObject dustParticleInstance;
+    public ParticleSystem dustParticlePrefab; // Assign the dust particle prefab here
+    private ParticleSystem dustParticleInstance;
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class PacStudentController : MonoBehaviour
         // Instantiate the dust particles and parent it to PacStudent
         dustParticleInstance = Instantiate(dustParticlePrefab, transform.position, Quaternion.identity);
         dustParticleInstance.transform.SetParent(transform);
-        dustParticleInstance.SetActive(false); // Start inactive
+        dustParticleInstance.Stop(); // Ensure it starts in a stopped state
     }
 
     void Update()
@@ -40,6 +40,16 @@ public class PacStudentController : MonoBehaviour
         {
             if (TryMove(lastInput)) return; // Try to move with last input
             if (TryMove(currentInput)) return; // Try to move with current input
+        }
+
+        // Control particle effect based on movement state
+        if (isMoving && !dustParticleInstance.isPlaying)
+        {
+            dustParticleInstance.Play(); // Start particle effect when moving
+        }
+        else if (!isMoving && dustParticleInstance.isPlaying)
+        {
+            dustParticleInstance.Stop(); // Stop particle effect when idle
         }
     }
 
@@ -101,7 +111,6 @@ public class PacStudentController : MonoBehaviour
     {
         isMoving = true;
         animator.SetBool("isMoving", true);
-        dustParticleInstance.SetActive(true); // Activate dust particles
 
         audioSource.Play();
 
@@ -119,10 +128,9 @@ public class PacStudentController : MonoBehaviour
         currentPosition = target;
         isMoving = false;
 
-        // Stop animation, audio, and dust effect when movement finishes
+        // Stop animation and audio when movement finishes
         animator.SetBool("isMoving", false);
         audioSource.Stop();
-        dustParticleInstance.SetActive(false); // Deactivate dust particles
     }
 
     bool IsPellet(Vector3 position)
