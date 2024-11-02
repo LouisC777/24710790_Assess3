@@ -13,6 +13,7 @@ public class PacStudentController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip pelletClip;
     public AudioClip moveClip;
+    public AudioClip wallCollisionSound; // Wall collision sound effect
 
     // Tilemap references
     public Tilemap wallTilemap;
@@ -20,6 +21,10 @@ public class PacStudentController : MonoBehaviour
     // Dust particle effect
     public ParticleSystem dustParticlePrefab; // Assign the dust particle prefab here
     private ParticleSystem dustParticleInstance;
+
+    // Wall collision particle effect
+    public ParticleSystem wallCollisionParticlePrefab; // Assign the wall collision particle prefab here
+    private bool hasCollidedWithWall = false; // Flag to track wall collisions
 
     void Start()
     {
@@ -72,7 +77,13 @@ public class PacStudentController : MonoBehaviour
             targetPosition = newPosition;
             SetMovementAnimation(direction); // Set animation only if moving
             StartCoroutine(MoveToPosition(targetPosition));
+            hasCollidedWithWall = false; // Reset the collision flag when moving
             return true;
+        }
+        else
+        {
+            // If not walkable, handle wall collision
+            HandleWallCollision();
         }
         return false;
     }
@@ -90,6 +101,26 @@ public class PacStudentController : MonoBehaviour
     {
         TileBase tile = wallTilemap.GetTile(wallTilemap.WorldToCell(position));
         return tile == null; // If there's no tile, it's walkable
+    }
+
+    void HandleWallCollision()
+    {
+        // Play the wall collision sound effect
+        audioSource.PlayOneShot(wallCollisionSound);
+
+        // Play wall collision particle effect only if not already collided
+        if (!hasCollidedWithWall)
+        {
+            TriggerWallCollisionEffect(transform.position);
+            hasCollidedWithWall = true; // Set the flag to true to prevent further particle effects
+        }
+    }
+
+    void TriggerWallCollisionEffect(Vector3 position)
+    {
+        ParticleSystem wallEffect = Instantiate(wallCollisionParticlePrefab, position, Quaternion.identity);
+        wallEffect.Play();
+        Destroy(wallEffect.gameObject, 1f); // Destroy the particle effect after 1 second
     }
 
     void SetMovementAnimation(KeyCode direction)
