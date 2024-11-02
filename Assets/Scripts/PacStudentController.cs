@@ -11,12 +11,13 @@ public class PacStudentController : MonoBehaviour
     // Animation and audio components
     public Animator animator;
     public AudioSource audioSource;
-    public AudioClip pelletClip;
+    public AudioClip pelletClip; // Sound effect for eating a pellet
     public AudioClip moveClip;
     public AudioClip wallCollisionSound; // Wall collision sound effect
 
     // Tilemap references
     public Tilemap wallTilemap;
+    public Tilemap pelletTilemap; // Reference to the pellet tilemap
 
     // Dust particle effect
     public ParticleSystem dustParticlePrefab; // Assign the dust particle prefab here
@@ -78,6 +79,13 @@ public class PacStudentController : MonoBehaviour
             SetMovementAnimation(direction); // Set animation only if moving
             StartCoroutine(MoveToPosition(targetPosition));
             hasCollidedWithWall = false; // Reset the collision flag when moving
+
+            // Check if there's a pellet at the new position
+            if (IsPellet(newPosition))
+            {
+                DestroyPellet(newPosition); // Destroy the pellet if it exists
+            }
+
             return true;
         }
         else
@@ -166,7 +174,20 @@ public class PacStudentController : MonoBehaviour
 
     bool IsPellet(Vector3 position)
     {
-        // Implement logic to determine if the target position has a pellet
-        return false; // Example placeholder
+        // Check if there is a pellet at the current position
+        Vector3Int tilePosition = pelletTilemap.WorldToCell(position);
+        TileBase pelletTile = pelletTilemap.GetTile(tilePosition);
+        return pelletTile != null; // Return true if there is a pellet
+    }
+
+    void DestroyPellet(Vector3 position)
+    {
+        // Play the pellet eating sound effect
+        audioSource.PlayOneShot(pelletClip);
+
+        // Get the tile position and destroy the pellet tile
+        Vector3Int tilePosition = pelletTilemap.WorldToCell(position);
+        pelletTilemap.SetTile(tilePosition, null); // Set the tile to null to destroy it
+        // Here you can add logic to update the player's score
     }
 }

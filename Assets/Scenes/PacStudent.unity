@@ -1794,9 +1794,11 @@ MonoBehaviour:
   audioSource: {fileID: 969869986}
   pelletClip: {fileID: 8300000, guid: 5a28a43d6a941a842853208b16c26c7e, type: 3}
   moveClip: {fileID: 8300000, guid: bcc4c05a434867b4ab60c58960162785, type: 3}
-  wallCollisionSound: {fileID: 0}
+  wallCollisionSound: {fileID: 8300000, guid: 98ac9f58659f6a0489d7ee0a542c7b36, type: 3}
   wallTilemap: {fileID: 1533014218}
+  pelletTilemap: {fileID: 1530632659}
   dustParticlePrefab: {fileID: 6045745092285414421, guid: 69663b1c5bd4b214291ac737982ab715, type: 3}
+  wallCollisionParticlePrefab: {fileID: 4169506752588366149, guid: 8724b9811cad1ae43a200daa0636cd83, type: 3}
 --- !u!61 &969869988
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2814,6 +2816,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1454006723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1454006725}
+  - component: {fileID: 1454006724}
+  m_Layer: 0
+  m_Name: Score Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1454006724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454006723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7537125c117fa42bb4012412da4662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  scoreText: {fileID: 0}
+--- !u!4 &1454006725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454006723}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.580237, y: -19.024216, z: -0.07085497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1501152160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,6 +3009,7 @@ GameObject:
   - component: {fileID: 1530632657}
   - component: {fileID: 1530632659}
   - component: {fileID: 1530632658}
+  - component: {fileID: 1530632660}
   m_Layer: 0
   m_Name: Pellets
   m_TagString: Untagged
@@ -5266,6 +5315,44 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1530632660
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530632656}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1533014215
 GameObject:
   m_ObjectHideFlags: 0
@@ -10510,13 +10597,13 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 8d4d8d900c020bd4185fcc930cdfd890, type: 3}
   m_Resource: {fileID: 8300000, guid: 8d4d8d900c020bd4185fcc930cdfd890, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.693
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 42
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -10718,3 +10805,4 @@ SceneRoots:
   - {fileID: 472100443}
   - {fileID: 998149501}
   - {fileID: 560672109}
+  - {fileID: 1454006725}
