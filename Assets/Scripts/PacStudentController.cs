@@ -91,6 +91,9 @@ public class PacStudentController : MonoBehaviour
                 DestroyPellet(newPosition);
             }
 
+            // Check for tunnel teleportation
+            CheckTunnelTeleportation(newPosition);
+
             return true;
         }
         else
@@ -195,5 +198,30 @@ public class PacStudentController : MonoBehaviour
         {
             scoreManager.AddScore(10); // Add 10 points for each pellet
         }
+    }
+
+    void CheckTunnelTeleportation(Vector3 position)
+    {
+        // Check for tunnel on the left side
+        if (position.x < wallTilemap.cellBounds.x)
+        {
+            // Move to the right side tunnel
+            TeleportToPosition(new Vector3(wallTilemap.cellBounds.xMax, position.y, position.z), KeyCode.D);
+        }
+        // Check for tunnel on the right side
+        else if (position.x > wallTilemap.cellBounds.xMax)
+        {
+            // Move to the left side tunnel
+            TeleportToPosition(new Vector3(wallTilemap.cellBounds.x, position.y, position.z), KeyCode.A);
+        }
+    }
+
+    void TeleportToPosition(Vector3 target, KeyCode direction)
+    {
+        StartCoroutine(MoveToPosition(target)); // Move to the new position
+
+        // Adjust the input to continue moving inwards towards the level
+        currentInput = direction; 
+        lastInput = direction; // Keep the last input consistent
     }
 }
