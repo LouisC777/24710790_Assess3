@@ -1614,7 +1614,7 @@ Animator:
   m_GameObject: {fileID: 969869981}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e8d9c19033184d74682c207ed8670e91, type: 2}
+  m_Controller: {fileID: 9100000, guid: c16732aff2342a64591c17575e7b0ed3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5420,7 +5420,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.12155551, y: 0.1216777, z: 0}
+  m_ChunkCullingBounds: {x: 0.12801462, y: 0.122688174, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
