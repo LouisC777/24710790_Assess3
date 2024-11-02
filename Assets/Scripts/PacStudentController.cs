@@ -29,6 +29,10 @@ public class PacStudentController : MonoBehaviour
 
     private ScoreManager scoreManager; // Reference to ScoreManager
 
+    // Waypoints for teleportation
+    public Transform[] teleportWaypoints; // Array of teleport waypoints
+    private int currentWaypointIndex = 0;
+
     void Start()
     {
         currentPosition = transform.position;
@@ -91,8 +95,11 @@ public class PacStudentController : MonoBehaviour
                 DestroyPellet(newPosition);
             }
 
-            // Check for tunnel teleportation
-            CheckTunnelTeleportation(newPosition);
+            // Check for teleportation
+            if (IsAtTeleportWaypoint(currentPosition))
+            {
+                StartCoroutine(TeleportToNextWaypoint(currentPosition));
+            }
 
             return true;
         }
@@ -200,28 +207,38 @@ public class PacStudentController : MonoBehaviour
         }
     }
 
-    void CheckTunnelTeleportation(Vector3 position)
+    bool IsAtTeleportWaypoint(Vector3 position)
     {
-        // Check for tunnel on the left side
-        if (position.x < wallTilemap.cellBounds.x)
+        foreach (Transform waypoint in teleportWaypoints)
         {
-            // Move to the right side tunnel
-            TeleportToPosition(new Vector3(wallTilemap.cellBounds.xMax, position.y, position.z), KeyCode.D);
+            if (Vector3.Distance(position, waypoint.position) < 0.5f) // Adjust the tolerance as needed
+            {
+                return true;
+            }
         }
-        // Check for tunnel on the right side
-        else if (position.x > wallTilemap.cellBounds.xMax)
-        {
-            // Move to the left side tunnel
-            TeleportToPosition(new Vector3(wallTilemap.cellBounds.x, position.y, position.z), KeyCode.A);
-        }
+        return false;
     }
 
-    void TeleportToPosition(Vector3 target, KeyCode direction)
+    System.Collections.IEnumerator TeleportToNextWaypoint(Vector3 currentPosition)
     {
-        StartCoroutine(MoveToPosition(target)); // Move to the new position
+        // Find the next waypoint
+        Transform nextWaypoint = GetNextWaypoint();
+        Debug.Log($"Teleporting to: {nextWaypoint.position}");
 
-        // Adjust the input to continue moving inwards towards the level
-        currentInput = direction; 
-        lastInput = direction; // Keep the last input consistent
+        // Set position to the next waypoint
+        transform.position = nextWaypoint.position;
+
+        // Update current position
+        currentPosition = nextWaypoint.position;
+        yield return null;
+
+        // Continue movement towards the level
+        StartCoroutine(MoveToPosition(currentPosition + GetDirectionFromKey(currentInput)));
+    }
+
+    Transform GetNextWaypoint()
+    {
+        currentWaypointIndex = (currentWaypointIndex + 1) % teleportWaypoints.Length;
+        return teleportWaypoints[currentWaypointIndex];
     }
 }
