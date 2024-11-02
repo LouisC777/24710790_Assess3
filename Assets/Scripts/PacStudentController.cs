@@ -11,26 +11,31 @@ public class PacStudentController : MonoBehaviour
     // Animation and audio components
     public Animator animator;
     public AudioSource audioSource;
-    public AudioClip pelletClip; // Sound effect for eating a pellet
+    public AudioClip pelletClip;
     public AudioClip moveClip;
     public AudioClip wallCollisionSound; // Wall collision sound effect
 
     // Tilemap references
     public Tilemap wallTilemap;
-    public Tilemap pelletTilemap; // Reference to the pellet tilemap
+    public Tilemap pelletTilemap; // Tilemap for pellets
 
     // Dust particle effect
-    public ParticleSystem dustParticlePrefab; // Assign the dust particle prefab here
+    public ParticleSystem dustParticlePrefab;
     private ParticleSystem dustParticleInstance;
 
     // Wall collision particle effect
-    public ParticleSystem wallCollisionParticlePrefab; // Assign the wall collision particle prefab here
-    private bool hasCollidedWithWall = false; // Flag to track wall collisions
+    public ParticleSystem wallCollisionParticlePrefab;
+    private bool hasCollidedWithWall = false;
+
+    private ScoreManager scoreManager; // Reference to ScoreManager
 
     void Start()
     {
         currentPosition = transform.position;
         targetPosition = currentPosition;
+
+        // Find and store reference to the ScoreManager using the updated method
+        scoreManager = Object.FindFirstObjectByType<ScoreManager>();
 
         // Instantiate the dust particles and parent it to PacStudent
         dustParticleInstance = Instantiate(dustParticlePrefab, transform.position, Quaternion.identity);
@@ -80,17 +85,16 @@ public class PacStudentController : MonoBehaviour
             StartCoroutine(MoveToPosition(targetPosition));
             hasCollidedWithWall = false; // Reset the collision flag when moving
 
-            // Check if there's a pellet at the new position
+            // Check for pellet at the target position
             if (IsPellet(newPosition))
             {
-                DestroyPellet(newPosition); // Destroy the pellet if it exists
+                DestroyPellet(newPosition);
             }
 
             return true;
         }
         else
         {
-            // If not walkable, handle wall collision
             HandleWallCollision();
         }
         return false;
@@ -174,20 +178,22 @@ public class PacStudentController : MonoBehaviour
 
     bool IsPellet(Vector3 position)
     {
-        // Check if there is a pellet at the current position
-        Vector3Int tilePosition = pelletTilemap.WorldToCell(position);
-        TileBase pelletTile = pelletTilemap.GetTile(tilePosition);
-        return pelletTile != null; // Return true if there is a pellet
+        // Check if there's a pellet tile at the given position
+        TileBase pelletTile = pelletTilemap.GetTile(pelletTilemap.WorldToCell(position));
+        return pelletTile != null;
     }
 
     void DestroyPellet(Vector3 position)
     {
-        // Play the pellet eating sound effect
-        audioSource.PlayOneShot(pelletClip);
+        audioSource.PlayOneShot(pelletClip); // Play pellet collection sound
 
-        // Get the tile position and destroy the pellet tile
         Vector3Int tilePosition = pelletTilemap.WorldToCell(position);
-        pelletTilemap.SetTile(tilePosition, null); // Set the tile to null to destroy it
-        // Here you can add logic to update the player's score
+        pelletTilemap.SetTile(tilePosition, null); // Remove the pellet tile
+
+        // Add points to score
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(10); // Add 10 points for each pellet
+        }
     }
 }
