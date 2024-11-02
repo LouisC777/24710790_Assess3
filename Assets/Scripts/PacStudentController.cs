@@ -8,39 +8,39 @@ public class PacStudentController : MonoBehaviour
     private Vector3 targetPosition, currentPosition;
     private bool isMoving = false;
 
-    // Animation and audio components
+
     public Animator animator;
     public AudioSource audioSource;
     public AudioClip pelletClip;
     public AudioClip moveClip;
-    public AudioClip wallCollisionSound; // Wall collision sound effect
+    public AudioClip wallCollisionSound; 
 
-    // Tilemap references
+   
     public Tilemap wallTilemap;
-    public Tilemap pelletTilemap; // Tilemap for pellets
+    public Tilemap pelletTilemap; 
 
-    // Dust particle effect
+ 
     public ParticleSystem dustParticlePrefab;
     private ParticleSystem dustParticleInstance;
 
-    // Wall collision particle effect
+
     public ParticleSystem wallCollisionParticlePrefab;
     private bool hasCollidedWithWall = false;
 
-    private ScoreManager scoreManager; // Reference to ScoreManager
+    private ScoreManager scoreManager; 
 
     void Start()
     {
         currentPosition = transform.position;
         targetPosition = currentPosition;
 
-        // Find and store reference to the ScoreManager using the updated method
+       
         scoreManager = Object.FindFirstObjectByType<ScoreManager>();
 
-        // Instantiate the dust particles and parent it to PacStudent
+        
         dustParticleInstance = Instantiate(dustParticlePrefab, transform.position, Quaternion.identity);
         dustParticleInstance.transform.SetParent(transform);
-        dustParticleInstance.Stop(); // Ensure it starts in a stopped state
+        dustParticleInstance.Stop(); 
     }
 
     void Update()
@@ -49,18 +49,18 @@ public class PacStudentController : MonoBehaviour
 
         if (!isMoving)
         {
-            if (TryMove(lastInput)) return; // Try to move with last input
-            if (TryMove(currentInput)) return; // Try to move with current input
+            if (TryMove(lastInput)) return; 
+            if (TryMove(currentInput)) return; 
         }
 
-        // Control particle effect based on movement state
+        
         if (isMoving && !dustParticleInstance.isPlaying)
         {
-            dustParticleInstance.Play(); // Start particle effect when moving
+            dustParticleInstance.Play(); 
         }
         else if (!isMoving && dustParticleInstance.isPlaying)
         {
-            dustParticleInstance.Stop(); // Stop particle effect when idle
+            dustParticleInstance.Stop(); 
         }
     }
 
@@ -81,11 +81,11 @@ public class PacStudentController : MonoBehaviour
         {
             currentInput = direction;
             targetPosition = newPosition;
-            SetMovementAnimation(direction); // Set animation only if moving
+            SetMovementAnimation(direction); 
             StartCoroutine(MoveToPosition(targetPosition));
-            hasCollidedWithWall = false; // Reset the collision flag when moving
+            hasCollidedWithWall = false; 
 
-            // Check for pellet at the target position
+            
             if (IsPellet(newPosition))
             {
                 DestroyPellet(newPosition);
@@ -112,19 +112,19 @@ public class PacStudentController : MonoBehaviour
     bool IsWalkable(Vector3 position)
     {
         TileBase tile = wallTilemap.GetTile(wallTilemap.WorldToCell(position));
-        return tile == null; // If there's no tile, it's walkable
+        return tile == null; 
     }
 
     void HandleWallCollision()
     {
-        // Play the wall collision sound effect
+        
         audioSource.PlayOneShot(wallCollisionSound);
 
-        // Play wall collision particle effect only if not already collided
+        
         if (!hasCollidedWithWall)
         {
             TriggerWallCollisionEffect(transform.position);
-            hasCollidedWithWall = true; // Set the flag to true to prevent further particle effects
+            hasCollidedWithWall = true; 
         }
     }
 
@@ -132,7 +132,7 @@ public class PacStudentController : MonoBehaviour
     {
         ParticleSystem wallEffect = Instantiate(wallCollisionParticlePrefab, position, Quaternion.identity);
         wallEffect.Play();
-        Destroy(wallEffect.gameObject, 1f); // Destroy the particle effect after 1 second
+        Destroy(wallEffect.gameObject, 1f); 
     }
 
     void SetMovementAnimation(KeyCode direction)
@@ -143,7 +143,7 @@ public class PacStudentController : MonoBehaviour
         animator.ResetTrigger("moveLeft");
         animator.ResetTrigger("moveRight");
 
-        // Trigger the correct animation based on the direction
+        
         if (direction == KeyCode.W) animator.SetTrigger("moveUp");
         else if (direction == KeyCode.A) animator.SetTrigger("moveLeft");
         else if (direction == KeyCode.S) animator.SetTrigger("moveDown");
@@ -171,29 +171,29 @@ public class PacStudentController : MonoBehaviour
         currentPosition = target;
         isMoving = false;
 
-        // Stop animation and audio when movement finishes
+        
         animator.SetBool("isMoving", false);
         audioSource.Stop();
     }
 
     bool IsPellet(Vector3 position)
     {
-        // Check if there's a pellet tile at the given position
+        
         TileBase pelletTile = pelletTilemap.GetTile(pelletTilemap.WorldToCell(position));
         return pelletTile != null;
     }
 
     void DestroyPellet(Vector3 position)
     {
-        audioSource.PlayOneShot(pelletClip); // Play pellet collection sound
+        audioSource.PlayOneShot(pelletClip); 
 
         Vector3Int tilePosition = pelletTilemap.WorldToCell(position);
-        pelletTilemap.SetTile(tilePosition, null); // Remove the pellet tile
+        pelletTilemap.SetTile(tilePosition, null); 
 
-        // Add points to score
+      
         if (scoreManager != null)
         {
-            scoreManager.AddScore(10); // Add 10 points for each pellet
+            scoreManager.AddScore(10); 
         }
     }
 }

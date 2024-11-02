@@ -2,39 +2,39 @@ using UnityEngine;
 
 public class CherryController : MonoBehaviour
 {
-    public GameObject cherryPrefab; // Assign the cherry prefab in the Inspector
+    public GameObject cherryPrefab; 
     public float moveSpeed = 5f;
-    public float spawnInterval = 10f; // Time interval for spawning the cherry
+    public float spawnInterval = 10f; 
     private Vector3 centerPosition;
 
     private void Start()
     {
-        // Get the center of the level
-        centerPosition = new Vector3(8, -10, 0); // Replace with actual center coordinates if needed
+        
+        centerPosition = new Vector3(8, -10, 0); 
         InvokeRepeating(nameof(SpawnCherry), spawnInterval, spawnInterval);
     }
 
     private void SpawnCherry()
     {
-        // Choose a random spawn position outside the camera view
+        
         Vector3 spawnPosition = GetRandomSpawnPositionOutsideCamera();
         
-        // Instantiate cherry at the spawn position
+        
         GameObject cherryInstance = Instantiate(cherryPrefab, spawnPosition, Quaternion.identity);
 
-        // Start the cherry moving across the level
+        
         StartCoroutine(MoveCherryAcrossLevel(cherryInstance));
     }
 
     private Vector3 GetRandomSpawnPositionOutsideCamera()
     {
-        // Get the camera bounds
+        
         Camera mainCamera = Camera.main;
         float camHeight = 2f * mainCamera.orthographicSize;
         float camWidth = camHeight * mainCamera.aspect;
 
-        // Randomize spawn position outside camera view on any side
-        int side = Random.Range(0, 4); // 0 = Top, 1 = Bottom, 2 = Left, 3 = Right
+        
+        int side = Random.Range(0, 4); 
         Vector3 spawnPosition = Vector3.zero;
 
         switch (side)
@@ -59,12 +59,12 @@ public class CherryController : MonoBehaviour
     private System.Collections.IEnumerator MoveCherryAcrossLevel(GameObject cherry)
     {
         Vector3 startPosition = cherry.transform.position;
-        Vector3 endPosition = centerPosition * 2 - startPosition; // Reflecting position across the center to get opposite side
+        Vector3 endPosition = centerPosition * 2 - startPosition; 
 
         float elapsedTime = 0;
         float journeyLength = Vector3.Distance(startPosition, endPosition);
 
-        // Move the cherry from one side of the screen to the other
+       
         while (elapsedTime < journeyLength / moveSpeed)
         {
             cherry.transform.position = Vector3.Lerp(startPosition, endPosition, (elapsedTime * moveSpeed) / journeyLength);
@@ -72,7 +72,7 @@ public class CherryController : MonoBehaviour
             yield return null;
         }
 
-        // Destroy cherry once it exits the camera view
+       
         Destroy(cherry);
     }
 }

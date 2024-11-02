@@ -1,14 +1,14 @@
 using UnityEngine;
-using TMPro; // Import TextMeshPro namespace
+using TMPro; 
 
 public class ScoreManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText; // TextMeshProUGUI for displaying the score
+    public TextMeshProUGUI scoreText; 
     private int score = 0;
 
     private void Start()
     {
-        UpdateScoreText(); // Initialize score display
+        UpdateScoreText(); 
     }
 
     public void AddScore(int points)
