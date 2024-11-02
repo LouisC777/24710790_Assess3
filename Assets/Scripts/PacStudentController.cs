@@ -29,10 +29,6 @@ public class PacStudentController : MonoBehaviour
 
     private ScoreManager scoreManager; // Reference to ScoreManager
 
-    // Waypoints for teleportation
-    public Transform[] teleportWaypoints; // Array of teleport waypoints
-    private int currentWaypointIndex = 0;
-
     void Start()
     {
         currentPosition = transform.position;
@@ -93,12 +89,6 @@ public class PacStudentController : MonoBehaviour
             if (IsPellet(newPosition))
             {
                 DestroyPellet(newPosition);
-            }
-
-            // Check for teleportation
-            if (IsAtTeleportWaypoint(currentPosition))
-            {
-                StartCoroutine(TeleportToNextWaypoint(currentPosition));
             }
 
             return true;
@@ -206,39 +196,6 @@ public class PacStudentController : MonoBehaviour
             scoreManager.AddScore(10); // Add 10 points for each pellet
         }
     }
-
-    bool IsAtTeleportWaypoint(Vector3 position)
-    {
-        foreach (Transform waypoint in teleportWaypoints)
-        {
-            if (Vector3.Distance(position, waypoint.position) < 0.5f) // Adjust the tolerance as needed
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    System.Collections.IEnumerator TeleportToNextWaypoint(Vector3 currentPosition)
-    {
-        // Find the next waypoint
-        Transform nextWaypoint = GetNextWaypoint();
-        Debug.Log($"Teleporting to: {nextWaypoint.position}");
-
-        // Set position to the next waypoint
-        transform.position = nextWaypoint.position;
-
-        // Update current position
-        currentPosition = nextWaypoint.position;
-        yield return null;
-
-        // Continue movement towards the level
-        StartCoroutine(MoveToPosition(currentPosition + GetDirectionFromKey(currentInput)));
-    }
-
-    Transform GetNextWaypoint()
-    {
-        currentWaypointIndex = (currentWaypointIndex + 1) % teleportWaypoints.Length;
-        return teleportWaypoints[currentWaypointIndex];
-    }
 }
+
+
